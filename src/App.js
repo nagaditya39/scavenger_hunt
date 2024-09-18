@@ -2,94 +2,95 @@ import React, { useState } from 'react';
 
 const cluesdata = {
   
-  group1: {
-    'First Clue': 'A1B2C3 ',
-    'Second Clue': 'D4E5F6',
-    'Third Clue': 'G7H8I9',
-    'Fourth Clue': 'J1K2L3',
-    'Fifth Clue': 'M4N5O6',
-    'Sixth Clue': 'P7Q8R9',
+  group01: {
+    'First Clue': 'A1B1C1 ',
+    'Second Clue': 'A1B1C1',
+    'Third Clue': 'A1B1C1',
+    'Fourth Clue': 'A1B1C1',
+    'Fifth Clue': 'A1B1C1',
+    'Sixth Clue': 'A1B1C1',
   },
-  group2: {
-    'First Clue': 'S1T2U3',
-    'Second Clue': 'V4W5X6',
-    'Third Clue': 'Y7Z8A9',
-    'Fourth Clue': 'B1C2D3',
-    'Fifth Clue': 'E4F5G6',
-    'Sixth Clue': 'H7I8J9',
+  group02: {
+    'First Clue': 'A2B2C2',
+    'Second Clue': 'A2B2C2',
+    'Third Clue': 'A2B2C2',
+    'Fourth Clue': 'A2B2C2',
+    'Fifth Clue': 'A2B2C2',
+    'Sixth Clue': 'A2B2C2',
   },
-  group3: {
-    'First Clue': 'K1L2M3',
-    'Second Clue': 'N4O5P6',
-    'Third Clue': 'Q7R8S9',
-    'Fourth Clue': 'T1U2V3',
-    'Fifth Clue': 'W4X5Y6',
-    'Sixth Clue': 'Z7A8B9',
+  group03: {
+    'First Clue': 'A3B3C3',
+    'Second Clue': 'A3B3C3',
+    'Third Clue': 'A3B3C3',
+    'Fourth Clue': 'A3B3C3',
+    'Fifth Clue': 'A3B3C3',
+    'Sixth Clue': 'A3B3C3',
   },
-  group4: {
-    'First Clue': 'C1D2E3',
-    'Second Clue': 'F4G5H6',
-    'Third Clue': 'I7J8K9',
-    'Fourth Clue': 'L1M2N3',
-    'Fifth Clue': 'O4P5Q6',
-    'Sixth Clue': 'R7S8T9',
+  group04: {
+    'First Clue': 'A4B4C4',
+    'Second Clue': 'A4B4C4',
+    'Third Clue': 'A4B4C4',
+    'Fourth Clue': 'A4B4C4',
+    'Fifth Clue': 'A4B4C4',
+    'Sixth Clue': 'A4B4C4',
   },
-  group5: {
-    'First Clue': 'U1V2W3',
-    'Second Clue': 'X4Y5Z6',
-    'Third Clue': 'A7B8C9',
-    'Fourth Clue': 'D1E2F3',
-    'Fifth Clue': 'G4H5I6',
-    'Sixth Clue': 'J7K8L9',
+  group05: {
+    'First Clue': 'A5B5C5',
+    'Second Clue': 'A5B5C5',
+    'Third Clue': 'A5B5C5',
+    'Fourth Clue': 'A5B5C5',
+    'Fifth Clue': 'A5B5C5',
+    'Sixth Clue': 'A5B5C5',
   },
-  group6: {
-    'First Clue': 'M1N2O3',
-    'Second Clue': 'P4Q5R6',
-    'Third Clue': 'S7T8U9',
-    'Fourth Clue': 'V1W2X3',
-    'Fifth Clue': 'Y4Z5A6',
-    'Sixth Clue': 'B7C8D9',
+  group06: {
+    'First Clue': 'A6B6C6',
+    'Second Clue': 'A6B6C6',
+    'Third Clue': 'A6B6C6',
+    'Fourth Clue': 'A6B6C6',
+    'Fifth Clue': 'A6B6C6',
+    'Sixth Clue': 'A6B6C6',
   },
-  group7: {
-    'First Clue': 'E1F2G3',
-    'Second Clue': 'H4I5J6',
-    'Third Clue': 'K7L8M9',
-    'Fourth Clue': 'N1O2P3',
-    'Fifth Clue': 'Q4R5S6',
-    'Sixth Clue': 'T7U8V9',
+  group07: {
+    'First Clue': 'A7B7C7',
+    'Second Clue': 'A7B7C7',
+    'Third Clue': 'A7B7C7',
+    'Fourth Clue': 'A7B7C7',
+    'Fifth Clue': 'A7B7C7',
+    'Sixth Clue': 'A7B7C7',
   },
-  group8: {
-    'First Clue': 'W1X2Y3',
-    'Second Clue': 'Z4A5B6',
-    'Third Clue': 'C7D8E9',
-    'Fourth Clue': 'F1G2H3',
-    'Fifth Clue': 'I4J5K6',
-    'Sixth Clue': 'L7M8N9',
+  group08: {
+    'First Clue': 'A8B8C8',
+    'Second Clue': 'A8B8C8',
+    'Third Clue': 'A8B8C8',
+    'Fourth Clue': 'A8B8C8',
+    'Fifth Clue': 'A8B8C8',
+    'Sixth Clue': 'A8B8C8',
   },
-  group9: {
-    'First Clue': 'O1P2Q3',
-    'Second Clue': 'R4S5T6',
-    'Third Clue': 'U7V8W9',
-    'Fourth Clue': 'X1Y2Z3',
-    'Fifth Clue': 'A4B5C6',
-    'Sixth Clue': 'D7E8F9',
+  group09: {
+    'First Clue': 'A9B9C9',
+    'Second Clue': 'A9B9C9',
+    'Third Clue': 'A9B9C9',
+    'Fourth Clue': 'A9B9C9',
+    'Fifth Clue': 'A9B9C9',
+    'Sixth Clue': 'A9B9C9',
   },
   group10: {
-    'First Clue': 'G1H2I3',
-    'Second Clue': 'J4K5L6',
-    'Third Clue': 'M7N8O9',
-    'Fourth Clue': 'P1Q2R3',
-    'Fifth Clue': 'S4T5U6',
-    'Sixth Clue': 'V7W8X9',
+    'First Clue': '10',
+    'Second Clue': '10',
+    'Third Clue': '10',
+    'Fourth Clue': '10',
+    'Fifth Clue': '10',
+    'Sixth Clue': '10',
   },
 }
 
 const App = () => {
 
-  const [group, setGroup] = useState('group1');
+  const [group, setGroup] = useState('group01');
   const [inputClue, setInputClue] = useState('');
   const [currentClue, setCurrentClue] = useState('');
   const [error, setError] = useState('');
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleInputChange = (e) => {
     setInputClue(e.target.value);
@@ -102,10 +103,12 @@ const App = () => {
     if (foundClue){
       setCurrentClue(foundClue);
       setError('');
+      setIsPopupOpen(true);
     }
     else {
       setError('Invalid Code, Please try again');
       setCurrentClue('');
+      setIsPopupOpen(false);
     }
 
   };
@@ -114,7 +117,11 @@ const App = () => {
     <div className='flex flex-col
     items-center
     justify-center
-    bg-gray-100 
+    bg-scavenger-hunt
+    w-screen
+    h-screen
+    bg-cover
+    bg-center
     text-white p-6 
     min-h-screen'>
       <div className="p-8 bg-white rounded-lg shadow-md">
@@ -126,7 +133,7 @@ const App = () => {
 
           {Object.keys(cluesdata).map(group => 
             <option key={group} value={group}>
-            Group {group.slice(-1)}
+            Group {group.slice(-2)}
             </option>)}
 
         </select>
@@ -146,7 +153,15 @@ const App = () => {
       
 
         {error && <p style={{color: 'red'}} className="mb-4 border  border-red-600 rounded-md p-2">{error}</p>}
-        {currentClue && <p className="mb-4">Clue Found: {currentClue}</p>}
+
+        {isPopupOpen && currentClue && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-white border border-gray-500 rounded-md p-4 max-w-sm mx-4 flex flex-col items-center justify-center">
+            <p className="text-black text-center mb-4">Clue Found: {currentClue}</p>
+            <button onClick={() => setIsPopupOpen(false)} className="mt-4 bg-red-500 text-white p-2 rounded">Close</button>
+          </div>
+        </div>
+      )}
 
         </div>
     </div>

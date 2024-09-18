@@ -4,7 +4,11 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage :{
+        'scavenger-hunt': "url('/src/download.jpeg')",
+      }
+    },
   },
   plugins: [],
 }
