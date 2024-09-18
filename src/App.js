@@ -111,32 +111,44 @@ const App = () => {
   };
 
   return(
-    <div>
-      <h1>Scavenger Hunt</h1>
-      <label>Select the group:</label>
-      <select value={group} onChange={(e) => setGroup(e.target.value)}>
+    <div className='flex flex-col
+    items-center
+    justify-center
+    bg-gray-100 
+    text-white p-6 
+    min-h-screen'>
+      <div className="p-8 bg-white rounded-lg shadow-md">
+      <h1 className="text-3xl font-bold mb-6 text-center text-black">Scavenger Hunt</h1>
 
-        {Object.keys(cluesdata).map(group => 
-          <option key={group} value={group}>
-          Group {group.slice(-1)}
-          </option>)}
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-1 ">Select the group:</label>
+        <select value={group} onChange={(e) => setGroup(e.target.value)} className="w-full text-black border border-gray-300 rounded-md p-2">
 
-      </select>
+          {Object.keys(cluesdata).map(group => 
+            <option key={group} value={group}>
+            Group {group.slice(-1)}
+            </option>)}
 
-      <div>
-        <label>Enter the code:</label>
+        </select>
+      </div>
+
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-gray-700 mb-1">Enter the code:</label>
         <input 
         type="text" 
         value={inputClue} 
         placeholder='Enter the code'
         onChange={handleInputChange} 
+        className="w-full text-black border border-gray-300 rounded-md p-2"
         />
-        <button onClick={checkCode}>Check</button>
-      </div>
+        </div>
+        <button onClick={checkCode} className="rounded-md w-full mb-4 py-2 bg-blue-950 text-center">Check</button>
+      
 
-        {error && <p style={{color: 'red'}}>{error}</p>}
-        {currentClue && <p>Clue Found: {currentClue}</p>}
+        {error && <p style={{color: 'red'}} className="mb-4 border  border-red-600 rounded-md p-2">{error}</p>}
+        {currentClue && <p className="mb-4">Clue Found: {currentClue}</p>}
 
+        </div>
     </div>
   );
 
