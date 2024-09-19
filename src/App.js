@@ -83,9 +83,9 @@ const App = () => {
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700 mb-1">Select the group:</label>
           <select value={group} onChange={(e) => setGroup(e.target.value)} className="w-full text-black border border-gray-300 rounded-md p-2">
-            {['group01', 'group02', 'group03', 'group04', 'group05', 'group06', 'group07', 'group08', 'group09', 'group10'].map(group => 
+            {['group1', 'group2', 'group3', 'group4', 'group5', 'group6'].map(group => 
               <option key={group} value={group}>
-                Group {group.slice(-2)}
+                Group {group.slice(-1)}
               </option>)}
           </select>
         </div>
@@ -128,7 +128,7 @@ const App = () => {
           <h2 className="text-xl font-bold mb-4 text-black">Public Progress</h2>
           <ul className="text-black">
             {publicProgress.map((team, index) => (
-              <li key={index}>{team.name} (Group {team.group}): {team.cluesFound} clues found</li>
+              <li key={index}>Group ({team.group.slice(-1)}) {team.name}: {team.cluesFound} clues found</li>
             ))}
           </ul>
         </div>
