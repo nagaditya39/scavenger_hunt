@@ -117,7 +117,9 @@ const App = () => {
           <h2 className="text-xl font-bold mb-4 text-black">Team Progress</h2>
           <ul className="text-black">
             {teamProgress.map((progress, index) => (
-              <li key={index}>{progress.clue}: Found</li>
+              <li key={index}>
+              {progress.clue}: Found at {new Date(progress.timestamp).toLocaleString()}
+              </li>
             ))}
           </ul>
         </div>
@@ -126,7 +128,7 @@ const App = () => {
           <h2 className="text-xl font-bold mb-4 text-black">Public Progress</h2>
           <ul className="text-black">
             {publicProgress.map((team, index) => (
-              <li key={index}>{team.name}: {team.progress.length} clues found</li>
+              <li key={index}>{team.name} (Group {team.group}): {team.cluesFound} clues found</li>
             ))}
           </ul>
         </div>
