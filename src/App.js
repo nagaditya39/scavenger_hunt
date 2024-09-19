@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL = 'https://scavenger-hunt-backend.onrender.com'; // Replace with your actual Render URL
+const API_URL = 'https://scavenger-hunt-backend.onrender.com/api'; // Replace with your actual Render URL
 
 const App = () => {
   const [group, setGroup] = useState('group01');
