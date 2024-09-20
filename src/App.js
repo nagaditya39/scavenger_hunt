@@ -97,7 +97,7 @@ const App = () => {
       </div>
 
       <div className="p-8 bg-white rounded-lg shadow-md max-w-2xl w-full">
-        <h1 className="text-3xl font-bold mb-6 text-center text-black">Scavenger Hunt</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center text-black">Treasure Hunt</h1>
 
         {!isTeamSet ? (
           <>
