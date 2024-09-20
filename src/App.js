@@ -47,14 +47,19 @@ const App = () => {
     setInputCode(e.target.value);
   };
 
-  const setTeam = () => {
+  const setTeam = async () => {
     if (!teamName.trim() || !group) {
       setError('Please enter both team name and group');
       return;
     }
-    setIsTeamSet(true);
-    setError('');
-    fetchTeamProgress();
+    try {
+      await fetchTeamProgress();
+      setIsTeamSet(true);
+      setError('');
+    } catch (error) {
+      console.error('Error setting team:', error);
+      setError('Failed to set team. Please try again.');
+    }
   };
 
   const checkCode = async () => {
