@@ -13,16 +13,9 @@ const App = () => {
   const [teamProgress, setTeamProgress] = useState([]);
   const [publicProgress, setPublicProgress] = useState([]);
 
-useEffect(() => {
-  const intervalId = setInterval(() => {
+  useEffect(() => {
     fetchPublicProgress();
-    if (teamName) {
-      fetchTeamProgress();
-    }
-  }, 30000); // Fetch every 30 seconds
-
-  return () => clearInterval(intervalId); // Clean up on component unmount
-}, [teamName]);
+  }, []);
 
   const fetchPublicProgress = async () => {
     try {
@@ -59,8 +52,8 @@ useEffect(() => {
         setCurrentClue(response.data.clue);
         setError('');
         setIsPopupOpen(true);
-        await fetchTeamProgress();
-        await fetchPublicProgress();
+        fetchTeamProgress();
+        fetchPublicProgress();
       } else {
         setError('Invalid Code, Please try again');
         setCurrentClue('');
