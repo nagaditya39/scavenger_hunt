@@ -6,8 +6,8 @@ const API_URL = 'https://scavenger-hunt-backend.onrender.com/api';
 const App = () => {
   const [group, setGroup] = useState('');
   const [inputCode, setInputCode] = useState('');
-  const [currentClue, setCurrentClue] = useState('');
-  const [nextClue, setNextClue] = useState('');
+  const [currentClueContent, setCurrentClueContent] = useState('');
+  const [nextClueNumber, setNextClueNumber] = useState(null);
   const [error, setError] = useState('');
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [teamName, setTeamName] = useState('');
@@ -33,7 +33,7 @@ const App = () => {
     try {
       const response = await axios.get(`${API_URL}/team-progress/${teamName}/${group}`);
       setCluesFound(response.data.cluesFound);
-      setNextClue(response.data.nextClue);
+      setNextClueNumber(response.data.nextClueNumber);
     } catch (error) {
       console.error('Error fetching team progress:', error);
       setError('Failed to fetch team progress');
@@ -68,15 +68,15 @@ const App = () => {
       });
 
       if (response.data.success) {
-        setCurrentClue(response.data.clue);
-        setNextClue(response.data.nextClue);
+        setCurrentClueContent(response.data.clueContent);
+        setNextClueNumber(response.data.nextClueNumber);
         setCluesFound(response.data.cluesFound);
         setError('');
         setIsPopupOpen(true);
         fetchPublicProgress();
       } else {
         setError(response.data.message || 'Invalid Code, Please try again');
-        setCurrentClue('');
+        setCurrentClueContent('');
         setIsPopupOpen(false);
       }
     } catch (error) {
@@ -124,7 +124,7 @@ const App = () => {
           <>
             <p className="mb-4 text-black">Team: {teamName} (Group {group.slice(-1)})</p>
             <p className="mb-4 text-black">Clues Found: {cluesFound}</p>
-            {nextClue && <p className="mb-4 text-black">Next Clue to Find: {nextClue}</p>}
+            {nextClueNumber && <p className="mb-4 text-black">Next Clue to Find: Clue #{nextClueNumber}</p>}
 
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-1">Enter the code:</label>
@@ -148,10 +148,10 @@ const App = () => {
           </p>
         )}
 
-        {isPopupOpen && currentClue && (
+        {isPopupOpen && currentClueContent && (
           <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="bg-white border border-gray-500 rounded-md p-4 max-w-sm mx-4 flex flex-col items-center justify-center">
-              <p className="text-black text-center mb-4">Clue Found: {currentClue}</p>
+              <p className="text-black text-center mb-4">Clue Content: {currentClueContent}</p>
               <button onClick={() => setIsPopupOpen(false)} className="mt-4 bg-red-500 text-white p-2 rounded">Close</button>
             </div>
           </div>
