@@ -97,7 +97,7 @@ const App = () => {
       {/* Logo/Banner Section */}
       <div className="w-full mb-8">
         <img 
-          src="/Alstom_Logo.png" 
+          src="/Alstom_logo.png" 
           alt="Treasure Hunt Logo" 
           className="w-full max-w-4xl mx-auto rounded-lg shadow-lg"
         />
