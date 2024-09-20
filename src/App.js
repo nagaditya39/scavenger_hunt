@@ -93,7 +93,7 @@ const App = () => {
         {!isTeamSet ? (
           <>
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Team Name:</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Team Rep:</label>
               <input 
                 type="text" 
                 value={teamName} 
@@ -110,8 +110,8 @@ const App = () => {
                 className="w-full text-black border border-gray-300 rounded-md p-2"
               >
                 <option value="">Select a group</option>
-                {['group1', 'group2', 'group3', 'group4', 'group5', 'group6'].map(g => 
-                  <option key={g} value={g}>Group {g.slice(-1)}</option>
+                {['Air', 'Fire', 'Water', 'Earth', 'Ether'].map(g => 
+                  <option key={g} value={g}>{g}</option>
                 )}
               </select>
             </div>
@@ -124,7 +124,7 @@ const App = () => {
           <>
             <p className="mb-4 text-black">Team: {teamName} (Group {group.slice(-1)})</p>
             <p className="mb-4 text-black">Clues Found: {cluesFound}</p>
-            {nextClueNumber && <p className="mb-4 text-black">Next Clue to Find: Clue #{nextClueNumber}</p>}
+            {nextClueNumber && <p className="mb-4 text-black">Current clue: {currentClueContent}</p>}
 
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-1">Enter the code:</label>
