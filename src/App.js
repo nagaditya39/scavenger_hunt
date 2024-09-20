@@ -40,7 +40,7 @@ const App = () => {
       if (response.data.currentClueContent) {
         setCurrentClueContent(response.data.currentClueContent);
       }
-      if (response.data.cluesFound === 6) {
+      if (response.data.cluesFound === 7) {
         setHasWon(true);
         const positionResponse = await axios.get(`${API_URL}/team-position/${teamName}/${group}`);
         setPosition(positionResponse.data.position);
@@ -52,7 +52,7 @@ const App = () => {
   };
 
   const handleInputChange = (e) => {
-    setInputCode(e.target.value);
+    setInputCode(e.target.value.toUpperCase());
   };
 
   const setTeam = async () => {
@@ -79,7 +79,7 @@ const App = () => {
     try {
       const response = await axios.post(`${API_URL}/check-code`, {
         group,
-        code: inputCode,
+        code: inputCode.trim(),
         teamName
       });
 
