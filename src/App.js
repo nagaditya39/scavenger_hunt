@@ -86,6 +86,16 @@ const App = () => {
   };
 
   return (
+    <div className='flex flex-col items-center justify-start bg-scavenger-hunt w-screen min-h-screen bg-cover bg-center text-white p-6'>
+      {/* Logo/Banner Section */}
+      <div className="w-full mb-8">
+        <img 
+          src="/Alstom_logo.png" 
+          alt="Treasure Hunt Logo" 
+          className="w-full max-w-4xl mx-auto rounded-lg shadow-lg"
+        />
+      </div>
+
     <div className='flex flex-col items-center justify-center bg-scavenger-hunt w-screen h-screen bg-cover bg-center text-white p-6 min-h-screen'>
       <div className="p-8 bg-white rounded-lg shadow-md">
         <h1 className="text-3xl font-bold mb-6 text-center text-black">Scavenger Hunt</h1>
