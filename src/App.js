@@ -90,14 +90,13 @@ const App = () => {
       {/* Logo/Banner Section */}
       <div className="w-full mb-8">
         <img 
-          src="/Alstom_logo.png" 
+          src="/Alstom_Logo.png" 
           alt="Treasure Hunt Logo" 
           className="w-full max-w-4xl mx-auto rounded-lg shadow-lg"
         />
       </div>
 
-    <div className='flex flex-col items-center justify-center bg-scavenger-hunt w-screen h-screen bg-cover bg-center text-white p-6 min-h-screen'>
-      <div className="p-8 bg-white rounded-lg shadow-md">
+      <div className="p-8 bg-white rounded-lg shadow-md max-w-2xl w-full">
         <h1 className="text-3xl font-bold mb-6 text-center text-black">Scavenger Hunt</h1>
 
         {!isTeamSet ? (
