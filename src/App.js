@@ -159,10 +159,10 @@ const App = () => {
           </p>
         )}
 
-        {isPopupOpen && (
+        {isPopupOpen && currentClueContent && (
           <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="bg-white border border-gray-500 rounded-md p-4 max-w-sm mx-4 flex flex-col items-center justify-center">
-              <p className="text-black text-center mb-4">Correct! You've found the next clue.</p>
+              <p className="text-black text-center mb-4">Clue Content: {currentClueContent}</p>
               <button onClick={() => setIsPopupOpen(false)} className="mt-4 bg-red-500 text-white p-2 rounded">Close</button>
             </div>
           </div>
