@@ -16,6 +16,7 @@ const App = () => {
   const [cluesFound, setCluesFound] = useState(0);
   const [hasWon, setHasWon] = useState(false);
   const [position, setPosition] = useState(null);
+  const [totalTeams, setTotalTeams] = useState(null);
 
   useEffect(() => {
     fetchPublicProgress();
@@ -94,6 +95,7 @@ const App = () => {
           try {
             const positionResponse = await axios.get(`${API_URL}/team-position/${teamName}/${group}`);
             setPosition(positionResponse.data.position);
+            setTotalTeams(positionResponse.data.totalTeams);
             setHasWon(true);
           } catch (positionError) {
             console.error('Error fetching team position:', positionError);
@@ -122,10 +124,15 @@ const App = () => {
         <div className="p-8 bg-white rounded-lg shadow-md max-w-2xl w-full text-center">
           <h1 className="text-4xl font-bold mb-6 text-black">Congratulations!</h1>
           <p className="text-2xl mb-4 text-black">You've found all 6 clues!</p>
-          {position ? (
-            <p className="text-3xl font-bold mb-6 text-black">
-              Your team finished in {getOrdinal(position)} place!
-            </p>
+          {position && totalTeams ? (
+            <div>
+              <p className="text-3xl font-bold mb-2 text-black">
+                Your team finished in {getOrdinal(position)} place!
+              </p>
+              <p className="text-xl mb-6 text-black">
+                Out of {totalTeams} team{totalTeams !== 1 ? 's' : ''} that have completed the hunt.
+              </p>
+            </div>
           ) : (
             <p className="text-xl text-black">Calculating your final position...</p>
           )}
