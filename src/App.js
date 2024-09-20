@@ -7,11 +7,13 @@ const App = () => {
   const [group, setGroup] = useState('');
   const [inputCode, setInputCode] = useState('');
   const [currentClue, setCurrentClue] = useState('');
+  const [nextClue, setNextClue] = useState('');
   const [error, setError] = useState('');
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [teamName, setTeamName] = useState('');
   const [publicProgress, setPublicProgress] = useState([]);
   const [isTeamSet, setIsTeamSet] = useState(false);
+  const [cluesFound, setCluesFound] = useState(0);
 
   useEffect(() => {
     fetchPublicProgress();
@@ -27,6 +29,17 @@ const App = () => {
     }
   };
 
+  const fetchTeamProgress = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/team-progress/${teamName}/${group}`);
+      setCluesFound(response.data.cluesFound);
+      setNextClue(response.data.nextClue);
+    } catch (error) {
+      console.error('Error fetching team progress:', error);
+      setError('Failed to fetch team progress');
+    }
+  };
+
   const handleInputChange = (e) => {
     setInputCode(e.target.value);
   };
@@ -38,6 +51,7 @@ const App = () => {
     }
     setIsTeamSet(true);
     setError('');
+    fetchTeamProgress();
   };
 
   const checkCode = async () => {
@@ -55,6 +69,8 @@ const App = () => {
 
       if (response.data.success) {
         setCurrentClue(response.data.clue);
+        setNextClue(response.data.nextClue);
+        setCluesFound(response.data.cluesFound);
         setError('');
         setIsPopupOpen(true);
         fetchPublicProgress();
@@ -107,6 +123,8 @@ const App = () => {
         ) : (
           <>
             <p className="mb-4 text-black">Team: {teamName} (Group {group.slice(-1)})</p>
+            <p className="mb-4 text-black">Clues Found: {cluesFound}</p>
+            {nextClue && <p className="mb-4 text-black">Next Clue to Find: {nextClue}</p>}
 
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700 mb-1">Enter the code:</label>
