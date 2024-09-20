@@ -122,7 +122,7 @@ const App = () => {
           </>
         ) : (
           <>
-            <p className="mb-4 text-black">Team: {teamName} (Group {group.slice(-1)})</p>
+            <p className="mb-4 text-black">Team: {teamName} (Group {group})</p>
             <p className="mb-4 text-black">Clues Found: {cluesFound}</p>
             {nextClueNumber && <p className="mb-4 text-black">Current clue: {currentClueContent}</p>}
 
@@ -158,10 +158,10 @@ const App = () => {
         )}
 
         <div className="mt-8">
-          <h2 className="text-xl font-bold mb-4 text-black">Public Progress</h2>
+          <h2 className="text-xl font-bold mb-4 text-black">Leaderboard</h2>
           <ul className="text-black">
             {publicProgress.map((team, index) => (
-              <li key={index}>Group {team.group.slice(-1)} - {team.name}: {team.cluesFound} clues found</li>
+              <li key={index}>Group {team.group} - {team.name}: {team.cluesFound} clues found</li>
             ))}
           </ul>
         </div>
