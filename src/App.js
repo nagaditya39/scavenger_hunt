@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL = 'https://scavenger-hunt-backend.onrender.com/api'; // Replace with your actual Render URL
+const API_URL = 'https://scavenger-hunt-backend.onrender.com/api';
 
 const App = () => {
-  const [group, setGroup] = useState('group01');
+  const [group, setGroup] = useState('group1');
   const [inputCode, setInputCode] = useState('');
   const [currentClue, setCurrentClue] = useState('');
   const [error, setError] = useState('');
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [teamName, setTeamName] = useState('');
-  const [teamProgress, setTeamProgress] = useState([]);
   const [publicProgress, setPublicProgress] = useState([]);
 
   useEffect(() => {
@@ -23,16 +22,7 @@ const App = () => {
       setPublicProgress(response.data);
     } catch (error) {
       console.error('Error fetching public progress:', error);
-    }
-  };
-
-  const fetchTeamProgress = async () => {
-    if (!teamName) return;
-    try {
-      const response = await axios.get(`${API_URL}/team-progress/${teamName}`);
-      setTeamProgress(response.data.progress);
-    } catch (error) {
-      console.error('Error fetching team progress:', error);
+      setError('Failed to fetch public progress');
     }
   };
 
@@ -41,6 +31,15 @@ const App = () => {
   };
 
   const checkCode = async () => {
+    if (!teamName.trim()) {
+      setError('Please enter a team name');
+      return;
+    }
+    if (!inputCode.trim()) {
+      setError('Please enter a code');
+      return;
+    }
+
     try {
       const response = await axios.post(`${API_URL}/check-code`, {
         group,
@@ -52,16 +51,15 @@ const App = () => {
         setCurrentClue(response.data.clue);
         setError('');
         setIsPopupOpen(true);
-        fetchTeamProgress();
         fetchPublicProgress();
       } else {
-        setError('Invalid Code, Please try again');
+        setError(response.data.message || 'Invalid Code, Please try again');
         setCurrentClue('');
         setIsPopupOpen(false);
       }
     } catch (error) {
       console.error('Error checking code:', error);
-      setError('An error occurred, please try again');
+      setError(error.response?.data?.message || 'An error occurred, please try again');
     }
   };
 
@@ -100,9 +98,13 @@ const App = () => {
             className="w-full text-black border border-gray-300 rounded-md p-2"
           />
         </div>
-        <button onClick={checkCode} className="rounded-md w-full mb-4 py-2 bg-blue-950 text-center">Check</button>
+        <button onClick={checkCode} className="rounded-md w-full mb-4 py-2 bg-blue-950 text-center text-white">Check</button>
 
-        {error && <p style={{color: 'red'}} className="mb-4 border border-red-600 rounded-md p-2">{error}</p>}
+        {error && (
+          <p className="mb-4 border border-red-600 rounded-md p-2 bg-red-100 text-red-800">
+            {error}
+          </p>
+        )}
 
         {isPopupOpen && currentClue && (
           <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -112,17 +114,6 @@ const App = () => {
             </div>
           </div>
         )}
-
-        <div className="mt-8">
-          <h2 className="text-xl font-bold mb-4 text-black">Team Progress</h2>
-          <ul className="text-black">
-            {teamProgress.map((progress, index) => (
-              <li key={index}>
-              {progress.clue}: Found at {new Date(progress.timestamp).toLocaleString()}
-              </li>
-            ))}
-          </ul>
-        </div>
 
         <div className="mt-8">
           <h2 className="text-xl font-bold mb-4 text-black">Public Progress</h2>
