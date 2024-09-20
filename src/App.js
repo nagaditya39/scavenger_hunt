@@ -4,13 +4,14 @@ import axios from 'axios';
 const API_URL = 'https://scavenger-hunt-backend.onrender.com/api';
 
 const App = () => {
-  const [group, setGroup] = useState('group1');
+  const [group, setGroup] = useState('');
   const [inputCode, setInputCode] = useState('');
   const [currentClue, setCurrentClue] = useState('');
   const [error, setError] = useState('');
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [teamName, setTeamName] = useState('');
   const [publicProgress, setPublicProgress] = useState([]);
+  const [isTeamSet, setIsTeamSet] = useState(false);
 
   useEffect(() => {
     fetchPublicProgress();
@@ -30,11 +31,16 @@ const App = () => {
     setInputCode(e.target.value);
   };
 
-  const checkCode = async () => {
-    if (!teamName.trim()) {
-      setError('Please enter a team name');
+  const setTeam = () => {
+    if (!teamName.trim() || !group) {
+      setError('Please enter both team name and group');
       return;
     }
+    setIsTeamSet(true);
+    setError('');
+  };
+
+  const checkCode = async () => {
     if (!inputCode.trim()) {
       setError('Please enter a code');
       return;
@@ -68,37 +74,55 @@ const App = () => {
       <div className="p-8 bg-white rounded-lg shadow-md">
         <h1 className="text-3xl font-bold mb-6 text-center text-black">Scavenger Hunt</h1>
 
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Team Name:</label>
-          <input 
-            type="text" 
-            value={teamName} 
-            onChange={(e) => setTeamName(e.target.value)} 
-            className="w-full text-black border border-gray-300 rounded-md p-2"
-          />
-        </div>
+        {!isTeamSet ? (
+          <>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-1">Team Name:</label>
+              <input 
+                type="text" 
+                value={teamName} 
+                onChange={(e) => setTeamName(e.target.value)} 
+                className="w-full text-black border border-gray-300 rounded-md p-2"
+              />
+            </div>
 
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Select the group:</label>
-          <select value={group} onChange={(e) => setGroup(e.target.value)} className="w-full text-black border border-gray-300 rounded-md p-2">
-            {['group1', 'group2', 'group3', 'group4', 'group5', 'group6'].map(group => 
-              <option key={group} value={group}>
-                Group {group.slice(-1)}
-              </option>)}
-          </select>
-        </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-1">Select your group:</label>
+              <select 
+                value={group} 
+                onChange={(e) => setGroup(e.target.value)} 
+                className="w-full text-black border border-gray-300 rounded-md p-2"
+              >
+                <option value="">Select a group</option>
+                {['group1', 'group2', 'group3', 'group4', 'group5', 'group6'].map(g => 
+                  <option key={g} value={g}>Group {g.slice(-1)}</option>
+                )}
+              </select>
+            </div>
 
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Enter the code:</label>
-          <input 
-            type="text" 
-            value={inputCode} 
-            placeholder='Enter the code'
-            onChange={handleInputChange} 
-            className="w-full text-black border border-gray-300 rounded-md p-2"
-          />
-        </div>
-        <button onClick={checkCode} className="rounded-md w-full mb-4 py-2 bg-blue-950 text-center text-white">Check</button>
+            <button onClick={setTeam} className="rounded-md w-full mb-4 py-2 bg-blue-950 text-center text-white">
+              Set Team
+            </button>
+          </>
+        ) : (
+          <>
+            <p className="mb-4 text-black">Team: {teamName} (Group {group.slice(-1)})</p>
+
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-1">Enter the code:</label>
+              <input 
+                type="text" 
+                value={inputCode} 
+                placeholder='Enter the code'
+                onChange={handleInputChange} 
+                className="w-full text-black border border-gray-300 rounded-md p-2"
+              />
+            </div>
+            <button onClick={checkCode} className="rounded-md w-full mb-4 py-2 bg-blue-950 text-center text-white">
+              Check Code
+            </button>
+          </>
+        )}
 
         {error && (
           <p className="mb-4 border border-red-600 rounded-md p-2 bg-red-100 text-red-800">
