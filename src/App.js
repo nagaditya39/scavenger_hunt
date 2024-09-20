@@ -95,11 +95,11 @@ const App = () => {
   return (
     <div className='flex flex-col items-center justify-start bg-scavenger-hunt w-screen min-h-screen bg-cover bg-center text-white p-6'>
       {/* Logo/Banner Section */}
-      <div className="w-full mb-8">
+      <div className="w-full mb-8 flex justify-center">
         <img 
-          src="/Alstom_logo.png" 
+          src="https://nagaditya39.github.io/scavenger_hunt/Alstom_logo.png" 
           alt="Treasure Hunt Logo" 
-          className="w-full max-w-4xl mx-auto rounded-lg shadow-lg"
+          className="h-auto object-contain"
         />
       </div>
 
@@ -165,15 +165,15 @@ const App = () => {
         )}
 
         {isPopupOpen && currentClueContent && (
-          <div className="fixed inset-0 flex items-center justify-center z-50">
-            <div className="bg-white border border-gray-500 rounded-md p-4 max-w-sm mx-4 flex flex-col items-center justify-center">
+          <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
+            <div className="bg-white border border-gray-500 rounded-md p-4 max-w-sm w-full mx-4 flex flex-col items-center justify-center">
               <p className="text-black text-center mb-4">Clue Content: {currentClueContent}</p>
               <button onClick={() => setIsPopupOpen(false)} className="mt-4 bg-red-500 text-white p-2 rounded">Close</button>
             </div>
           </div>
         )}
 
-        <div className="mt-8">
+        <div className="mt-8 w-full">
           <h2 className="text-xl font-bold mb-4 text-black">Leaderboard</h2>
           <ul className="text-black">
             {publicProgress.map((team, index) => (
