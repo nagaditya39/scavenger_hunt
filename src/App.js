@@ -14,6 +14,8 @@ const App = () => {
   const [publicProgress, setPublicProgress] = useState([]);
   const [isTeamSet, setIsTeamSet] = useState(false);
   const [cluesFound, setCluesFound] = useState(0);
+  const [hasWon, setHasWon] = useState(false);
+  const [position, setPosition] = useState(null);
 
   useEffect(() => {
     fetchPublicProgress();
@@ -36,6 +38,11 @@ const App = () => {
       setNextClueNumber(response.data.nextClueNumber);
       if (response.data.currentClueContent) {
         setCurrentClueContent(response.data.currentClueContent);
+      }
+      if (response.data.cluesFound === 6) {
+        setHasWon(true);
+        const positionResponse = await axios.get(`${API_URL}/team-position/${teamName}/${group}`);
+        setPosition(positionResponse.data.position);
       }
     } catch (error) {
       console.error('Error fetching team progress:', error);
@@ -82,6 +89,12 @@ const App = () => {
         setError('');
         setIsPopupOpen(true);
         fetchPublicProgress();
+        
+        if (response.data.cluesFound === 6) {
+          setHasWon(true);
+          const positionResponse = await axios.get(`${API_URL}/team-position/${teamName}/${group}`);
+          setPosition(positionResponse.data.position);
+        }
       } else {
         setError(response.data.message || 'Invalid Code, Please try again');
       }
@@ -91,6 +104,27 @@ const App = () => {
       setError(error.response?.data?.message || 'An error occurred, please try again');
     }
   };
+
+  const getOrdinal = (n) => {
+    const s = ["th", "st", "nd", "rd"];
+    const v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  };
+
+  if (hasWon) {
+    return (
+      <div className='flex flex-col items-center justify-center bg-scavenger-hunt w-screen min-h-screen bg-cover bg-center text-white p-6'>
+        <div className="p-8 bg-white rounded-lg shadow-md max-w-2xl w-full text-center">
+          <h1 className="text-4xl font-bold mb-6 text-black">Congratulations!</h1>
+          <p className="text-2xl mb-4 text-black">You've found all 6 clues!</p>
+          <p className="text-3xl font-bold mb-6 text-black">
+            Your team finished in {getOrdinal(position)} place!
+          </p>
+          <p className="text-xl text-black">Thank you for participating in the Treasure Hunt!</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='flex flex-col items-center justify-start bg-scavenger-hunt w-screen min-h-screen bg-cover bg-center text-white p-6'>
