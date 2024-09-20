@@ -17,9 +17,24 @@ const App = () => {
   const [hasWon, setHasWon] = useState(false);
   const [position, setPosition] = useState(null);
   const [totalTeams, setTotalTeams] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [initialLoadComplete, setInitialLoadComplete] = useState(false);
 
   useEffect(() => {
-    fetchPublicProgress();
+    const initializeApp = async () => {
+      setIsLoading(true);
+      try {
+        await fetchPublicProgress();
+        setInitialLoadComplete(true);
+      } catch (error) {
+        console.error('Error initializing app:', error);
+        setError('Failed to initialize the app. Please try again.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    initializeApp();
   }, []);
 
   const fetchPublicProgress = async () => {
@@ -29,6 +44,7 @@ const App = () => {
     } catch (error) {
       console.error('Error fetching public progress:', error);
       setError('Failed to fetch public progress');
+      throw error;
     }
   };
 
@@ -118,6 +134,22 @@ const App = () => {
     return n + (s[(v - 20) % 10] || s[v] || s[0]);
   };
 
+  if (isLoading && !initialLoadComplete) {
+    return (
+      <div className='flex flex-col items-center justify-center bg-scavenger-hunt w-screen min-h-screen bg-cover bg-center text-white p-6'>
+        <div className="p-8 bg-white rounded-lg shadow-md max-w-2xl w-full text-center">
+          <h1 className="text-3xl font-bold mb-6 text-black">Treasure Hunt</h1>
+          <p className="text-xl mb-4 text-black">Loading the game...</p>
+          <p className="text-md mb-4 text-gray-600">
+            This may take up to 1-1.5 minutes if the server has been inactive.
+            Thank you for your patience!
+          </p>
+          {/* You can add a loading spinner here if desired */}
+        </div>
+      </div>
+    );
+  }
+
   if (hasWon) {
     return (
       <div className='flex flex-col items-center justify-center bg-scavenger-hunt w-screen min-h-screen bg-cover bg-center text-white p-6'>
@@ -156,6 +188,10 @@ const App = () => {
       <div className="p-8 bg-white rounded-lg shadow-md max-w-2xl w-full">
         <h1 className="text-3xl font-bold mb-6 text-center text-black">Treasure Hunt</h1>
 
+        {isLoading ? (
+          <p className="text-center text-black mb-4">Loading...</p>
+        ) : (
+          <>
         {!isTeamSet ? (
           <>
             <div className="mb-4">
@@ -231,6 +267,8 @@ const App = () => {
             ))}
           </ul>
         </div>
+        </>
+        )}
       </div>
     </div>
   );
