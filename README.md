@@ -12,6 +12,8 @@ An interactive web-based treasure hunt application.
 [Features](#-features) • [Setup](#%EF%B8%8F-setup-and-installation) • [Usage](#-usage) • [Deployment](#-deployment) • [Contributing](#-contributing)
 </div>
 
+This is the frontend repository for the Scavenger Hunt application. For the backend code, please visit the [Scavenger Hunt Backend Repository](https://github.com/nagaditya39/scavenger_hunt_backend).
+
 ## 🌟 Features
 
 - 🏷️ Team registration with group selection
