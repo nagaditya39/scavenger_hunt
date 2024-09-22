@@ -50,7 +50,7 @@ const App = () => {
 
   const fetchTeamProgress = async () => {
     try {
-      const response = await axios.get(`${API_URL}/team-progress/${teamName}/${group}`);
+      const response = await axios.get(`${API_URL}/team-progress/${teamName.trim()}/${group}`);
       setCluesFound(response.data.cluesFound);
       setNextClueNumber(response.data.nextClueNumber);
       if (response.data.currentClueContent) {
@@ -96,7 +96,7 @@ const App = () => {
       const response = await axios.post(`${API_URL}/check-code`, {
         group,
         code: inputCode.trim(),
-        teamName
+        teamName: teamName.trim(),
       });
 
       if (response.data.success) {
