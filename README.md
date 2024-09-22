@@ -1,7 +1,6 @@
 # 🗺️ Scavenger Hunt Frontend
 
 <div align="center">
-
 <img src="./src/Treasure_hunt.logo.jpg" alt="Scavenger Hunt Logo" width="200" />
 
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
@@ -10,8 +9,7 @@
 
 An interactive web-based treasure hunt application.
 
-[Features](#features) • [Setup](#setup-and-installation) • [Usage](#usage) • [Deployment](#deployment) • [Contributing](#contributing)
-
+[Features](#-features) • [Setup](#%EF%B8%8F-setup-and-installation) • [Usage](#-usage) • [Deployment](#-deployment) • [Contributing](#-contributing)
 </div>
 
 ## 🌟 Features
@@ -25,32 +23,26 @@ An interactive web-based treasure hunt application.
 ## 🛠️ Setup and Installation
 
 1. **Clone the repository**
-
    ```bash
    git clone https://github.com/yourusername/scavenger_hunt.git
    cd scavenger_hunt
    ```
 
 2. **Install dependencies**
-
    ```bash
    npm install
    ```
 
 3. **Environment Configuration**
-
    Create a `.env` file in the root directory:
-
    ```env
    REACT_APP_API_URL=https://your-backend-url.com/api
    ```
 
 4. **Start the development server**
-
    ```bash
    npm start
    ```
-
    The application will be available at `http://localhost:3000`.
 
 ## 🎮 Usage
@@ -68,19 +60,16 @@ An interactive web-based treasure hunt application.
 This application is optimized for deployment on GitHub Pages.
 
 1. Update the `homepage` field in `package.json`:
-
    ```json
    "homepage": "https://yourusername.github.io/scavenger_hunt"
    ```
 
 2. Build the project:
-
    ```bash
    npm run build
    ```
 
 3. Deploy to GitHub Pages:
-
    ```bash
    npm run deploy
    ```
