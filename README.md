@@ -2,8 +2,7 @@
 
 <div align="center">
 
-![Scavenger Hunt Logo](https://nagaditya39.github.io/scavenger_hunt/Alstom_logo.png)
-
+![Scavenger Hunt Logo](./src/Treasure_hunt.logo.jpg)
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)](https://axios-http.com/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
@@ -125,5 +124,6 @@ Please make sure to update tests as appropriate and adhere to the existing codin
 ---
 
 <div align="center">
-Madeby [Aditya Nag]
+Made by ![BongoCatTypingGIF](./src/BongoCatTypingGIF.gif)
+ [Aditya Nag]
 </div>
