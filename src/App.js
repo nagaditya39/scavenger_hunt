@@ -144,7 +144,7 @@ const App = () => {
             This may take up to 1-1.5 minutes if the server has been inactive.
             Thank you for your patience!
           </p>
-          {/* will add spinner maybe */}
+          {/* will add spinner icon maybe */}
         </div>
       </div>
     );
