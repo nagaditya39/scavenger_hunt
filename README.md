@@ -1,70 +1,121 @@
-# Getting Started with Create React App
+# 🗺️ Scavenger Hunt Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
+<img src="./src/Treasure_hunt.logo.jpg" alt="Scavenger Hunt Logo" width="200" />
 
-## Available Scripts
+[![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)](https://axios-http.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-In the project directory, you can run:
+An interactive web-based treasure hunt application.
 
-### `npm start`
+[Features](#-features) • [Setup](#%EF%B8%8F-setup-and-installation) • [Usage](#-usage) • [Deployment](#-deployment) • [Contributing](#-contributing)
+</div>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This is the frontend repository for the Scavenger Hunt application. For the backend code, please visit the [Scavenger Hunt Backend Repository](https://github.com/nagaditya39/scavenger_hunt_backend).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🌟 Features
 
-### `npm test`
+- 🏷️ Team registration with group selection
+- 🔑 Code submission and validation
+- 🏆 Real-time leaderboard
+- 📊 Progress tracking
+- 🎉 Winning condition and final position display
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ Setup and Installation
 
-### `npm run build`
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/nagaditya39/scavenger_hunt.git
+   cd scavenger_hunt
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. **Environment Configuration**
+   Create a `.env` file in the root directory:
+   ```env
+   REACT_APP_API_URL=https://your-backend-url.com/api
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. **Start the development server**
+   ```bash
+   npm start
+   ```
+   The application will be available at `http://localhost:3000`.
 
-### `npm run eject`
+## 🎮 Usage
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Open the application in a web browser.
+2. Enter your team name and select your group.
+3. As you progress through the treasure hunt:
+   - Submit codes as you find them.
+   - View your progress on the dashboard.
+   - Check the leaderboard to see how your team ranks.
+4. Complete all clues to finish the game and see your final position!
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🚀 Deployment
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+This application is optimized for deployment on GitHub Pages.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Update the `homepage` field in `package.json`:
+   ```json
+   "homepage": "https://yourusername.github.io/scavenger_hunt"
+   ```
 
-## Learn More
+2. Build the project:
+   ```bash
+   npm run build
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Deploy to GitHub Pages:
+   ```bash
+   npm run deploy
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🧩 Project Structure
 
-### Code Splitting
+```
+scavenger_hunt/
+│
+├── public/
+│   ├── index.html
+│   └── org.png
+│
+├── src/
+│   ├── App.js
+│   ├── index.js
+│   └── index.css
+│
+├── package.json
+├── README.md
+└── .gitignore
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🤝 Contributing
 
-### Analyzing the Bundle Size
+Contributions are always welcome! Here's how you can help:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature-branch-name`.
+3. Make your changes and commit them: `git commit -m 'Add some feature'`.
+4. Push to the branch: `git push origin feature-branch-name`.
+5. Submit a pull request.
 
-### Making a Progressive Web App
+Please make sure to update tests as appropriate and adhere to the existing coding style.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🙏 Acknowledgements
 
-### Advanced Configuration
+- [React](https://reactjs.org/) for the powerful front-end framework.
+- [Axios](https://axios-http.com/) for simplified HTTP requests.
+- [Tailwind CSS](https://tailwindcss.com/) for the sleek, responsive design.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<div align="center">
+<img src="./src/BongoCatTypingGIF.gif" alt="BongoCatTypingGIF" width="100" /><br>
+  Made by <strong>Aditya Nag</strong>
+</div>
