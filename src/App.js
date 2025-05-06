@@ -106,7 +106,7 @@ const App = () => {
         setError('');
         setIsPopupOpen(true);
         fetchPublicProgress();
-        
+
         if (response.data.cluesFound === 7) {
           try {
             const positionResponse = await axios.get(`${API_URL}/team-position/${teamName}/${group}`);
@@ -144,7 +144,7 @@ const App = () => {
             This may take up to 1-1.5 minutes if the server has been inactive.
             Thank you for your patience!
           </p>
-          {/* You can add a loading spinner here if desired */}
+          {/* will add spinner maybe */}
         </div>
       </div>
     );
@@ -178,9 +178,9 @@ const App = () => {
     <div className='flex flex-col items-center justify-start bg-scavenger-hunt w-screen min-h-screen bg-cover bg-center text-white p-6'>
       {/* Logo/Banner Section */}
       <div className="w-full mb-8 flex justify-center">
-        <img 
-          src="https://nagaditya39.github.io/scavenger_hunt/Alstom_logo.png" 
-          alt="Treasure Hunt Logo" 
+        <img
+          src="https://nagaditya39.github.io/scavenger_hunt/Alstom_logo.png"
+          alt="Treasure Hunt Logo"
           className="h-auto object-contain"
         />
       </div>
@@ -192,82 +192,82 @@ const App = () => {
           <p className="text-center text-black mb-4">Loading...</p>
         ) : (
           <>
-        {!isTeamSet ? (
-          <>
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Team Rep:</label>
-              <input 
-                type="text" 
-                value={teamName} 
-                onChange={(e) => setTeamName(e.target.value)} 
-                className="w-full text-black border border-gray-300 rounded-md p-2"
-              />
-            </div>
+            {!isTeamSet ? (
+              <>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Team Rep:</label>
+                  <input
+                    type="text"
+                    value={teamName}
+                    onChange={(e) => setTeamName(e.target.value)}
+                    className="w-full text-black border border-gray-300 rounded-md p-2"
+                  />
+                </div>
 
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Select your group:</label>
-              <select 
-                value={group} 
-                onChange={(e) => setGroup(e.target.value)} 
-                className="w-full text-black border border-gray-300 rounded-md p-2"
-              >
-                <option value="">Select a group</option>
-                {['Air', 'Fire', 'Water', 'Earth', 'Ether'].map(g => 
-                  <option key={g} value={g}>{g}</option>
-                )}
-              </select>
-            </div>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Select your group:</label>
+                  <select
+                    value={group}
+                    onChange={(e) => setGroup(e.target.value)}
+                    className="w-full text-black border border-gray-300 rounded-md p-2"
+                  >
+                    <option value="">Select a group</option>
+                    {['Air', 'Fire', 'Water', 'Earth', 'Ether'].map(g =>
+                      <option key={g} value={g}>{g}</option>
+                    )}
+                  </select>
+                </div>
 
-            <button onClick={setTeam} className="rounded-md w-full mb-4 py-2 bg-blue-950 text-center text-white">
-              Set Team
-            </button>
+                <button onClick={setTeam} className="rounded-md w-full mb-4 py-2 bg-blue-950 text-center text-white">
+                  Set Team
+                </button>
+              </>
+            ) : (
+              <>
+                <p className="mb-4 text-black">Team: {teamName} (Group {group})</p>
+                <p className="mb-4 text-black">Clues Found: {cluesFound}</p>
+                <p className="mb-4 text-black">Current clue: {currentClueContent || "No clue found yet"}</p>
+
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Enter the code:</label>
+                  <input
+                    type="text"
+                    value={inputCode}
+                    placeholder='Enter the code'
+                    onChange={handleInputChange}
+                    className="w-full text-black border border-gray-300 rounded-md p-2"
+                  />
+                </div>
+                <button onClick={checkCode} className="rounded-md w-full mb-4 py-2 bg-blue-950 text-center text-white">
+                  Check Code
+                </button>
+              </>
+            )}
+
+            {error && (
+              <p className="mb-4 border border-red-600 rounded-md p-2 bg-red-100 text-red-800">
+                {error}
+              </p>
+            )}
+
+            {isPopupOpen && currentClueContent && (
+              <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
+                <div className="bg-white border border-gray-500 rounded-md p-4 max-w-sm w-full mx-4 flex flex-col items-center justify-center">
+                  <p className="text-black text-center mb-4">Clue : {currentClueContent}</p>
+                  <button onClick={() => setIsPopupOpen(false)} className="mt-4 bg-red-500 text-white p-2 rounded">Close</button>
+                </div>
+              </div>
+            )}
+
+            <div className="mt-8 w-full">
+              <h2 className="text-xl font-bold mb-4 text-black">Leaderboard</h2>
+              <ul className="text-black">
+                {publicProgress.map((team, index) => (
+                  <li key={index}>Group {team.group} - {team.name}: {team.cluesFound} clues found</li>
+                ))}
+              </ul>
+            </div>
           </>
-        ) : (
-          <>
-            <p className="mb-4 text-black">Team: {teamName} (Group {group})</p>
-            <p className="mb-4 text-black">Clues Found: {cluesFound}</p>
-            <p className="mb-4 text-black">Current clue: {currentClueContent || "No clue found yet"}</p>
-
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Enter the code:</label>
-              <input 
-                type="text" 
-                value={inputCode} 
-                placeholder='Enter the code'
-                onChange={handleInputChange} 
-                className="w-full text-black border border-gray-300 rounded-md p-2"
-              />
-            </div>
-            <button onClick={checkCode} className="rounded-md w-full mb-4 py-2 bg-blue-950 text-center text-white">
-              Check Code
-            </button>
-          </>
-        )}
-
-        {error && (
-          <p className="mb-4 border border-red-600 rounded-md p-2 bg-red-100 text-red-800">
-            {error}
-          </p>
-        )}
-
-        {isPopupOpen && currentClueContent && (
-          <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
-            <div className="bg-white border border-gray-500 rounded-md p-4 max-w-sm w-full mx-4 flex flex-col items-center justify-center">
-              <p className="text-black text-center mb-4">Clue : {currentClueContent}</p>
-              <button onClick={() => setIsPopupOpen(false)} className="mt-4 bg-red-500 text-white p-2 rounded">Close</button>
-            </div>
-          </div>
-        )}
-
-        <div className="mt-8 w-full">
-          <h2 className="text-xl font-bold mb-4 text-black">Leaderboard</h2>
-          <ul className="text-black">
-            {publicProgress.map((team, index) => (
-              <li key={index}>Group {team.group} - {team.name}: {team.cluesFound} clues found</li>
-            ))}
-          </ul>
-        </div>
-        </>
         )}
       </div>
     </div>
